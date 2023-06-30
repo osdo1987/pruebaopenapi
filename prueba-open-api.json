@@ -1,0 +1,3462 @@
+{
+  "openapi": "3.0.1",
+  "info":
+    {
+      "title": "SandBox",
+      "description": "Api pruebas Datamonetization",
+      "license": { "name": "Apache 2.0", "url": "http://Bemobi.com" },
+      "version": "V2.0",
+    },
+  "servers":
+    [{ "url": "http://localhost:8080", "description": "Generated server url" }],
+  "tags":
+    [
+      {
+        "name": "Relationship Features",
+        "description": "Conoce el nivel de relación que tienen tus clientes con otros usuarios.",
+      },
+      {
+        "name": "Profiling",
+        "description": "Descubre cómo perfilar a tus clientes con información completa de su comportamiento móvil.",
+      },
+      {
+        "name": "Fraud Prevention",
+        "description": "Describe un ejemplo de web service que se debe disponibilizar para ser notificado de eventos asociados a la prevención de posibles fraudes.",
+      },
+      {
+        "name": "Behavior Features",
+        "description": "Permite conocer el comportamiento de un usuario en base a información de uso y recargas de servicios móviles.",
+      },
+    ],
+  "paths":
+    {
+      "/relationship/contactNetworkSize":
+        {
+          "get":
+            {
+              "tags": ["Relationship Features"],
+              "summary": "contactNetworkSize",
+              "description": "Represents the relationship between the age of the phone number with the mobile operator.",
+              "operationId": "contactNetworkSize",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/ContactNetworkSize",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/profiling/subscriberType":
+        {
+          "get":
+            {
+              "tags": ["Profiling"],
+              "summary": "subscriberType",
+              "description": "The relationship between operator mobile and the phone number consulted is directly indicated: prepaid, postpaid or mixed customer (controlled account plan).",
+              "operationId": "s2",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/SubscriberTypeDto",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/profiling/subscriberCategory":
+        {
+          "get":
+            {
+              "tags": ["Profiling"],
+              "summary": "subscriberCategory",
+              "description": "Returns the values for lineAge, deviceRange and subscriberCategory in a single call.",
+              "operationId": "s",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/SubscriberCategory",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/profiling/status":
+        {
+          "get":
+            {
+              "tags": ["Profiling"],
+              "summary": "status",
+              "description": "It is a flag that describes the subscriber status in the network. Postpaid lines with limited service due to delinquency or prepaid lines with no top-ups in a certain period can be considered inactive",
+              "operationId": "s3",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/StatusDto" },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/profiling/spendingTrend":
+        {
+          "get":
+            {
+              "tags": ["Profiling"],
+              "summary": "spendingTrend",
+              "description": "The objective of this score is to know the spending trend of a given user.",
+              "operationId": "s7",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/SpendingTrendDto",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/profiling/sophisticationIndex":
+        {
+          "get":
+            {
+              "tags": ["Profiling"],
+              "summary": "sophisticationIndex",
+              "description": "The sophistication index is a score given according to a user’s tech adoption. It is composed by the range of the user’s device, mobile OS and the usage of apps such as Facebook, WhatsApp, Instagram, Snapchat, YouTube and Uber, among others.",
+              "operationId": "s5",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/SophisticationIndexDto",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/profiling/riskScore":
+        {
+          "get":
+            {
+              "tags": ["Profiling"],
+              "summary": "riskScore",
+              "description": "The objective of this score is to know the risk profile of a given user. It measures the odds of default based on his/her mobile behavior",
+              "operationId": "s6",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/RiskScoreDto" },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/profiling/riskProfiling":
+        {
+          "get":
+            {
+              "tags": ["Profiling"],
+              "summary": "riskProfiling",
+              "description": "Returns the values of Line Age, Subscriber Type, Status, Top Up Level, Cadence, Contacts Network and Subscriber Activity in a single call for the risk profile of the phone number",
+              "operationId": "s8",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/RiskProfilingDto",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/profiling/planCategory":
+        {
+          "get":
+            {
+              "tags": ["Profiling"],
+              "summary": "planCategory",
+              "description": "The plan category index measures the cost of mobile services per user. It considers the amount paid in the last 60-day period and incorporates values from billing at postpaid subscription to Top Ups at prepaid.",
+              "operationId": "s4",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/PlanCategoryDto",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/profiling/lineAge":
+        {
+          "get":
+            {
+              "tags": ["Profiling"],
+              "summary": "lineAge",
+              "description": "Represents the relationship between the age of the phone number with the mobile operator.",
+              "operationId": "lineAge",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/LineAgeDto" },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/profiling/deviceRange":
+        {
+          "get":
+            {
+              "tags": ["Profiling"],
+              "summary": "deviceRange",
+              "description": "Determine the price range of the mobile device as low, medium, high or intermediate categories.",
+              "operationId": "deviceRange",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/DeviceRangeDto",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/profiling/customerRisk":
+        {
+          "get":
+            {
+              "tags": ["Profiling"],
+              "summary": "customerRisk",
+              "description": "Returns the values of Line Age, Top Up Level, Contacts Network, Plan Category, Device Range, Sophistication Index, Phone Score and Risk Score in a single call for the risk of the phone number",
+              "operationId": "sr",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/CustomerRiskDto",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/profiling/contactabilityScore":
+        {
+          "get":
+            {
+              "tags": ["Profiling"],
+              "summary": "contactabilityScore",
+              "description": "The objective of this score is to determine the mobile user’s probability of answering voice calls when it comes to reaching strategies. This helps prioritize efforts for collections, marketing, etc.It analyzes the behavior with indicators regarding mobile activity and contact network..",
+              "operationId": "sh",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/ContactabilityScoreDto",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/profiling/RiskScoreAndSubscriberType":
+        {
+          "get":
+            {
+              "tags": ["Profiling"],
+              "summary": "RiskScoreAndSubscriberType",
+              "description": "Returns the values of Risk Score and Subscriber Type in a single call for the risk profile of the phone number",
+              "operationId": "status",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/RiskScoreAndSubscriberTypeDto",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/profiling/RiskAndFraudForOrigination":
+        {
+          "get":
+            {
+              "tags": ["Profiling"],
+              "summary": "RiskAndFraudForOrigination",
+              "description": "Returns the values of Risk Score, Fraud Score, Subscriber Type and Top-Up Level in a single call of the phone number",
+              "operationId": "s9",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/RiskAndFraudForOriginationDto",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/profiling/AllScores":
+        {
+          "get":
+            {
+              "tags": ["Profiling"],
+              "summary": "AllScores",
+              "description": "Returns the values of Fraud Score, Contactability Score, Phone Score and Risk Score in a single call of the phone number",
+              "operationId": "se",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/AllScoresDto" },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/fraud-prevention/portability":
+        {
+          "get":
+            {
+              "tags": ["Fraud Prevention"],
+              "summary": "portability",
+              "description": "Validate if the phone number has had portability events in the last 30 days",
+              "operationId": "portability",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/Portability" },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/fraud-prevention/fraudScore":
+        {
+          "get":
+            {
+              "tags": ["Fraud Prevention"],
+              "summary": "fraudScore",
+              "description": "The objective of this score is to know the fraud profile of a given user. It measures the ods of fraud based on his/her mobile behavior",
+              "operationId": "fraudScore",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/FraudScore" },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/fraud-prevention/deviceSwap":
+        {
+          "get":
+            {
+              "tags": ["Fraud Prevention"],
+              "summary": "deviceSwap",
+              "description": "Represents the times that the user made a SIM card swap during the last 90 days.",
+              "operationId": "deviceSwap",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/DeviceSwap" },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/fraud-prevention/SIMSwap":
+        {
+          "get":
+            {
+              "tags": ["Fraud Prevention"],
+              "summary": "SIMSwap",
+              "description": "Represents the age of the SIM card during the last 30 days. In this sense, every time a user changes SIM card, the age of the SIM card is initialized.",
+              "operationId": "SIMSwap",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/SimSwap" },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/fraud-prevention/SIMChanges":
+        {
+          "get":
+            {
+              "tags": ["Fraud Prevention"],
+              "summary": "SIMChanges",
+              "description": "Represents the times that the user made a SIM card change during the last 30 days. In this matter, everytime that a user removes the sim card from a device and puts it in another one, a sim card change is counted.",
+              "operationId": "SIMChanges",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/SimChanges" },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/behavior/topupLevel":
+        {
+          "get":
+            {
+              "tags": ["Behavior Features"],
+              "summary": "topupLevel",
+              "description": "The purpose of this feature is aimed to measure the level of top-up amount per user.",
+              "operationId": "topupLevel",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/TopUpLevel" },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/behavior/topupCadence":
+        {
+          "get":
+            {
+              "tags": ["Behavior Features"],
+              "summary": "topupCadence",
+              "description": "This feature score depicts the trend that the user follows when making top-ups. It can be called as “discipline to top-up”. Higher the feature, tighter the discipline.",
+              "operationId": "topupCadence",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                { "$ref": "#/components/schemas/TopUpCadence" },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/behavior/subscriberTopUpActivity":
+        {
+          "get":
+            {
+              "tags": ["Behavior Features"],
+              "summary": "subscriberTopUpActivity",
+              "description": "Returns the values for topupLevel, topupCadence and subscriberActivity in a single call.",
+              "operationId": "subscriberTopUpActivity",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/SubscriberTopUpActivity",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/behavior/subscriberActivity":
+        {
+          "get":
+            {
+              "tags": ["Behavior Features"],
+              "summary": "subscriberActivity",
+              "description": "The purpose of this function is to measure the activity of the telephone number consulted in the network of the mobile operator. Historical voice and navigation information of the user is used",
+              "operationId": "subscriberActivity",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/SubscriberActivity",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/behavior/customerFeaturesForRisk":
+        {
+          "get":
+            {
+              "tags": ["Behavior Features"],
+              "summary": "customerFeaturesForRisk",
+              "description": "Returns the values for Status, Subscriber Type, Line Age, Sim Age,Device Age, Device Range, Device Change Level, Top Up Level, Cadence, Plan Category, Spending Trend, Sophistication Index, Fraud Score, RiskScore in a single call",
+              "operationId": "customerFeaturesForRisk",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/CustomerFeaturesForRisk",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/behavior/customerBehaviorRisk":
+        {
+          "get":
+            {
+              "tags": ["Behavior Features"],
+              "summary": "customerBehaviorRisk",
+              "description": "Returns the values for Line Age, Risk Score and Fraud Score, in a single call.",
+              "operationId": "customerBehaviorRisk",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/CustomerBehaviorRisk",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/behavior/customerBehaviorPack":
+        {
+          "get":
+            {
+              "tags": ["Behavior Features"],
+              "summary": "customerBehaviorPack",
+              "operationId": "customerBehaviorPack",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/CustomerBehaviorPack",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/behavior/customerBehaviorForRisk":
+        {
+          "get":
+            {
+              "tags": ["Behavior Features"],
+              "summary": "customerBehaviorForRisk",
+              "description": "Returns the values for Subscriber Type, Status, Tenure, Cadence, Top Up Level, Activity, Contact Network, Sim Change Level, Spending Trend, Plan Category, Device Range, Sophistication Index, Contactability Score, Phone Score, Fraud Score and RiskScore in a single call",
+              "operationId": "customerBehaviorForRisk",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/CustomerBehaviorForRisk",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/behavior/creditRiskIdentification":
+        {
+          "get":
+            {
+              "tags": ["Behavior Features"],
+              "summary": "creditRiskIdentification",
+              "description": "Returns the values for Top Up Level, Subscription Type, Fraud Score and Sim Changes, in a single call for Identification of fraud and credit risk",
+              "operationId": "creditRiskIdentification",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/CreditRiskIdentification",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/behavior/behaviorFeatureAndScores":
+        {
+          "get":
+            {
+              "tags": ["Behavior Features"],
+              "summary": "behaviorFeatureAndScores",
+              "operationId": "behaviorFeatureAndScores",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/BehaviorFeatureAndScores",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/behavior/RiskAndFeaturesScore":
+        {
+          "get":
+            {
+              "tags": ["Behavior Features"],
+              "summary": "RiskAndFeaturesScore",
+              "description": "Returns the values for Risk Score, Plan Category and Device Range, in a single call for credit risk of the phone number",
+              "operationId": "RiskAndFeaturesScore",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/RiskAndFeaturesScore",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+      "/behavior/CreditRiskContactability":
+        {
+          "get":
+            {
+              "tags": ["Behavior Features"],
+              "summary": "CreditRiskContactability",
+              "description": "Returns the values for Risk Score and Contactability Score, in a single call for credit risk of the phone number",
+              "operationId": "CreditRiskContactability",
+              "parameters":
+                [
+                  {
+                    "name": "userId",
+                    "in": "query",
+                    "description": "Identifier of the user issuing the request. In the case of A2A integrations this is a unique identifier for the originating platform. In case of requests originated in different agents, this field should identify the agent issuing the request",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "msisdn",
+                    "in": "query",
+                    "description": "Unique identifier for the request from the issuer side. This information is required for audit and reconciliation processes. Accepts a string value with a maximum length of 50 characters",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "transactionId",
+                    "in": "query",
+                    "description": "Mobile number whose information is requested. Number must be in international format (msisdn), including country code, with no “+” sign in the beginning. Length: 12.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                  {
+                    "name": "X-Scoring-Key",
+                    "in": "header",
+                    "description": "Authentication token to be shared by Tiaxa to identify the company issuing the request. For integration purposes considerer the use of a unique token.",
+                    "required": true,
+                    "schema": { "type": "string" },
+                  },
+                ],
+              "responses":
+                {
+                  "200":
+                    {
+                      "description": "OK",
+                      "content":
+                        {
+                          "*/*":
+                            {
+                              "schema":
+                                {
+                                  "$ref": "#/components/schemas/CreditRiskContactability",
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+    },
+  "components":
+    {
+      "schemas":
+        {
+          "ContactNetworkSize":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "contactNetworkSize":
+                    {
+                      "type": "string",
+                      "description": "The values they can take are from 0-0 to 4-4",
+                      "example": "4-1",
+                    },
+                },
+            },
+          "SubscriberTypeDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "subscriberType":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 1 - 4 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 2,
+                    },
+                },
+            },
+          "SubscriberCategory":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "lineAge":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 100 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 45,
+                    },
+                  "deviceRange":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 10 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 9,
+                    },
+                  "subscriberCategory":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 1 - 5 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 2,
+                    },
+                },
+            },
+          "StatusDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "status":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 1 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 1,
+                    },
+                },
+            },
+          "SpendingTrendDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "spendingTrend":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 40 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 28,
+                    },
+                },
+            },
+          "SophisticationIndexDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "sophisticationIndex":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 10 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 8,
+                    },
+                },
+            },
+          "RiskScoreDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "riskScore":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 999 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 756,
+                    },
+                },
+            },
+          "ResultScores":
+            {
+              "title": "resultScores",
+              "type": "object",
+              "description": "Values for the score requested.",
+            },
+          "RiskProfilingDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "resultScores":
+                    { "$ref": "#/components/schemas/ResultScores" },
+                },
+            },
+          "PlanCategoryDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "planCategory":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 15 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 8,
+                    },
+                },
+            },
+          "LineAgeDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "lineAge":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 100 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 45,
+                    },
+                },
+            },
+          "DeviceRangeDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "diviceRange":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 10 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 9,
+                    },
+                },
+            },
+          "CustomerRiskDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "resultScores":
+                    { "$ref": "#/components/schemas/ResultScoresAux3" },
+                },
+            },
+          "ResultScoresAux3":
+            {
+              "title": "resultScores",
+              "type": "object",
+              "properties":
+                {
+                  "phoneScore":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 999 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 365,
+                    },
+                  "contactNetwork": { "type": "string" },
+                  "lineAge": { "type": "integer", "format": "int32" },
+                  "deviceRange": { "type": "integer", "format": "int32" },
+                  "planCategory": { "type": "integer", "format": "int32" },
+                  "sophisticationIndex":
+                    { "type": "integer", "format": "int32" },
+                  "riskScore": { "type": "integer", "format": "int32" },
+                  "topUpLevel": { "type": "integer", "format": "int32" },
+                },
+              "description": "Values for the score requested.",
+            },
+          "ContactabilityScoreDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "contactabilityScore":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 999 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 340,
+                    },
+                },
+            },
+          "ResultScoresAux":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "subscriberType": { "type": "integer", "format": "int32" },
+                  "riskScore": { "type": "integer", "format": "int32" },
+                },
+              "description": "Values for the score requested (Risk Score And Susbscriber Type).",
+            },
+          "RiskScoreAndSubscriberTypeDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "resultScores":
+                    { "$ref": "#/components/schemas/ResultScoresAux" },
+                },
+            },
+          "RiskAndFraudForOriginationDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "resultScores":
+                    { "$ref": "#/components/schemas/ResultScoresAux" },
+                },
+            },
+          "AllScoresDto":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "resultScores":
+                    { "$ref": "#/components/schemas/ResultScoresAux4" },
+                },
+            },
+          "ResultScoresAux4":
+            {
+              "title": "resultScores",
+              "type": "object",
+              "properties":
+                {
+                  "phoneScore":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 999 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 340,
+                    },
+                  "riskScore": { "type": "integer", "format": "int32" },
+                  "fraudScore": { "type": "integer", "format": "int32" },
+                  "contactabilityScore":
+                    { "type": "integer", "format": "int32" },
+                },
+              "description": "Values for the score requested Risk, Fraud, Susbscription Type and Top-Up Level.",
+            },
+          "Portability":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "portability":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 999",
+                      "format": "int32",
+                      "example": 267,
+                    },
+                },
+            },
+          "FraudScore":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "fraudScore":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 1 - 1000 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 478,
+                    },
+                },
+            },
+          "DeviceSwap":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "deviceSwap":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 999",
+                      "format": "int32",
+                      "example": 389,
+                    },
+                },
+            },
+          "SimSwap":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "simSwap":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 5",
+                      "format": "int32",
+                      "example": 4,
+                    },
+                },
+            },
+          "SimChanges":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "simChanges":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 999 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 791,
+                    },
+                },
+            },
+          "TopUpLevel":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "topUpLevel": { "type": "integer", "format": "int32" },
+                },
+            },
+          "TopUpCadence":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "topupCadence":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 0 – 100 and consider a string with a maximum length of 3 characters. “NIF” (Not Information avaliable)",
+                      "format": "int32",
+                      "example": 45,
+                    },
+                },
+            },
+          "SubscriberTopUpActivity":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "topupLevel":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 0 – 10 and consider a string with a maximum length of 3 characters. “NIF” (Not Information avaliable)",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "topupCadence":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 0 – 100 and consider a string with a maximum length of 3 characters. “NIF” (Not Information avaliable)",
+                      "format": "int32",
+                      "example": 45,
+                    },
+                  "subscriberActivity":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 0 – 10.",
+                      "format": "int32",
+                      "example": 5,
+                    },
+                },
+            },
+          "SubscriberActivity":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "subscriberActivity":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 0 – 10.",
+                      "format": "int32",
+                      "example": 5,
+                    },
+                },
+            },
+          "CustomerFeaturesForRisk":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "resultScores":
+                    { "$ref": "#/components/schemas/ResultScoresAux8" },
+                },
+            },
+          "ResultScoresAux8":
+            {
+              "title": "resultScores",
+              "type": "object",
+              "properties":
+                {
+                  "status":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 1 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 1,
+                    },
+                  "subscriberType":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 1 - 4 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 2,
+                    },
+                  "lineAge":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 100 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 45,
+                    },
+                  "simAge":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 0 - 100 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 791,
+                    },
+                  "deviceAge":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 0 - 100 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 791,
+                    },
+                  "deviceRange":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 10 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 9,
+                    },
+                  "deviceChangeLevel":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 5 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 4,
+                    },
+                  "topUpLevel":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 9 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 7,
+                    },
+                  "cadence":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 0 - 100 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 4,
+                    },
+                  "planCategory":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 15 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 8,
+                    },
+                  "spendingTrend":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 40 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 28,
+                    },
+                  "sophisticationIndex":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 10 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 8,
+                    },
+                  "fraudScore":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 999 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 478,
+                    },
+                  "riskScore":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 999 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 756,
+                    },
+                },
+              "description": "Values for the score requested.",
+            },
+          "CustomerBehaviorRisk":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "resultScores":
+                    { "$ref": "#/components/schemas/ResultScoresAux6" },
+                },
+            },
+          "ResultScoresAux6":
+            {
+              "title": "resultScores",
+              "type": "object",
+              "properties":
+                {
+                  "lineAge":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 100 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 45,
+                    },
+                  "fraudScore":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 999 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 478,
+                    },
+                  "riskScore":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 999 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 756,
+                    },
+                },
+              "description": "Values for the score requested.",
+            },
+          "CustomerBehaviorPack":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "resultScores":
+                    { "$ref": "#/components/schemas/ResultScoresAux5" },
+                },
+            },
+          "ResultScoresAux5":
+            {
+              "title": "resultScores",
+              "type": "object",
+              "properties":
+                {
+                  "lineAge":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 100 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 45,
+                    },
+                  "cadence":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 0 - 100 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 4,
+                    },
+                  "spendingTrend":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 40 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 28,
+                    },
+                  "contactNetwork":
+                    {
+                      "type": "string",
+                      "description": "Value of the requested indicator. Range 1 - 4 and consider value -1 when Information not available.",
+                      "example": "2-2",
+                    },
+                  "fraudScore":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 999 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 478,
+                    },
+                  "riskScore":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 999 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 756,
+                    },
+                },
+              "description": "Values for the score requested.",
+            },
+          "CustomerBehaviorForRisk":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "resultScores":
+                    { "$ref": "#/components/schemas/ResultScoresAux12" },
+                },
+            },
+          "ResultScoresAux12":
+            {
+              "title": "resultScores",
+              "type": "object",
+              "properties":
+                {
+                  "subscriberType":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 1 - 4 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 2,
+                    },
+                  "status":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 1 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 1,
+                    },
+                  "tenure":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 100 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 64,
+                    },
+                  "cadence":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 0 - 100 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 4,
+                    },
+                  "topUpLevel":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 9 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 7,
+                    },
+                  "activity":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 10 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 8,
+                    },
+                  "contactNetwork":
+                    {
+                      "type": "string",
+                      "description": "Value of the requested indicator. Range 1 - 4 and consider value -1 when Information not available.",
+                      "example": "4-2",
+                    },
+                  "simChangeLevel":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 6 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "spendingTrend":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 40 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 28,
+                    },
+                  "planCategory":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 15 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 8,
+                    },
+                  "deviceRange":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 10 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 9,
+                    },
+                  "sophisticationIndex":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 10 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 8,
+                    },
+                  "contactabilityScore":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 999 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 340,
+                    },
+                  "phoneScore":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 999 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 340,
+                    },
+                  "fraudScore":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 999 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 478,
+                    },
+                  "riskScore":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 999 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 756,
+                    },
+                },
+              "description": "Values for the score requested.",
+            },
+          "CreditRiskIdentification":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "resultScores":
+                    { "$ref": "#/components/schemas/ResultScoresAux7" },
+                },
+            },
+          "ResultScoresAux7":
+            {
+              "title": "resultScores",
+              "type": "object",
+              "properties":
+                {
+                  "topUpLevel":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 9 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 7,
+                    },
+                  "subscriptionType":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 1 - 4 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 2,
+                    },
+                  "fraudScore":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 999 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 478,
+                    },
+                  "simChanges":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 999 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 791,
+                    },
+                },
+              "description": "Values for the score requested.",
+            },
+          "BehaviorFeatureAndScores":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "resultScores":
+                    { "$ref": "#/components/schemas/ResultScoresAux11" },
+                },
+            },
+          "ResultScoresAux11":
+            {
+              "title": "resultScores",
+              "type": "object",
+              "properties":
+                {
+                  "phoneScore":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 999 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 340,
+                    },
+                  "contactabilityScore":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 999 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 340,
+                    },
+                  "lineAge":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 100 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 45,
+                    },
+                },
+              "description": "Values for the score requested.",
+            },
+          "ResultScoresAux10":
+            {
+              "title": "resultScores",
+              "type": "object",
+              "properties":
+                {
+                  "riskScore":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 999 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 756,
+                    },
+                  "planCategory":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 15 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 8,
+                    },
+                  "deviceRange":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 10 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 9,
+                    },
+                },
+              "description": "Values for the score requested.",
+            },
+          "RiskAndFeaturesScore":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "resultScores":
+                    { "$ref": "#/components/schemas/ResultScoresAux10" },
+                },
+            },
+          "CreditRiskContactability":
+            {
+              "type": "object",
+              "properties":
+                {
+                  "resultCode":
+                    {
+                      "type": "integer",
+                      "description": "Result of method execution. The value 0 indicates a successful execution",
+                      "format": "int32",
+                      "example": 0,
+                    },
+                  "resultText":
+                    {
+                      "type": "string",
+                      "description": "Failure description in case of error",
+                      "example": "OK",
+                    },
+                  "resultTransactionId":
+                    {
+                      "type": "string",
+                      "description": "Unique identifier of the response on success",
+                      "example": "71d33602-3ca0-11ea-b77f-2e728ce88125",
+                    },
+                  "resultScores":
+                    { "$ref": "#/components/schemas/ResultScoresAux9" },
+                },
+            },
+          "ResultScoresAux9":
+            {
+              "title": "resultScores",
+              "type": "object",
+              "properties":
+                {
+                  "riskScore":
+                    {
+                      "type": "integer",
+                      "description": "Value of the requested indicator. Range 0 - 999 and consider value -1 when Information not available.",
+                      "format": "int32",
+                      "example": 756,
+                    },
+                  "contactabilityScore":
+                    {
+                      "type": "integer",
+                      "description": "Value for the score requested. Range 1 - 999 and consider value -1 when Information not available",
+                      "format": "int32",
+                      "example": 340,
+                    },
+                },
+              "description": "Values for the score requested.",
+            },
+        },
+    },
+}
